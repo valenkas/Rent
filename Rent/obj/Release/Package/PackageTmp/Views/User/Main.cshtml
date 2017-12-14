@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Rent.Models.Aparts>
+
+@{
+    ViewBag.Title = "Main";
+}
+
+
+<body>
+
+    @if (Session["UserID"] != null)
+    {
+        <div class="col-md-10">
+            Здравствуйте! Вы вошли в систему как @Session["UserName"].ToString() @Session["Usersurname"].ToString()
+        </div>
+        <div class="col-md-10">
+            @Html.ActionLink("Добавить объявение", "AddApartByUser", "User")
+        </div>
+    }
+
+    <br />
+    <h3>
+        Поиск по объявлениям   
+    </h3>
+    
+    <form action="SearchInAparts">
+        <input name="Type" placeholder="Поиск по типу" />
+        <input type="submit" value="Поиск" />
+    </form>
+    <br />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartArea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartExtraDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApartImage)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartArea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApartExtraDescription)
+                    </td>
+                    @if (item.ApartImage !=null)
+                    {
+                        <td>
+                            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(item.ApartImage) + "\" />")
+                        </td>
+                    }
+                    
+                </tr>
+            }
+
+        </table>
+    
+</body>  
+

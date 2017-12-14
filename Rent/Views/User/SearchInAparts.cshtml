@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Rent.Models.Aparts>
+
+@{
+    ViewBag.Title = "SearchInAparts";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartExtraDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartExtraDescription)
+        </td>
+        @if (item.ApartImage != null)
+        {
+            <td>
+                @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(item.ApartImage) + "\" />")
+            </td>
+        }
+
+    </tr>
+}
+
+</table>
